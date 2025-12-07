@@ -257,6 +257,12 @@ export default function Home() {
     setIndexPoster(index);
     setSelectedPosterMovie(mov);
   }
+  const navigateDetail=(id:number)=>{
+    window.location.href=`/detalmovie/${id}`;
+  }
+  const navigateDetailTopic=(id:number)=>{
+    window.location.href=`/topics/${id}`;
+  }
   const handleNext = (rowIndex: number) => {
   const vp = viewportRef.current[rowIndex];
   if (!vp) return;
@@ -391,6 +397,7 @@ const handlePrev = (rowIndex: number) => {
                           ['--to' as any]: topic.bg_color.bg_color_to,
                         } as React.CSSProperties
                       }
+                  onClick={()=>navigateDetailTopic(topic.id)}
                    className={`relative border border-white/50 w-[200px] h-[150px] rounded-3xl content-center shadow-xl bg-gradient-to-br from-[var(--from)] via-[var(--via)] to-[var(--to)] hover:cursor-pointer hover:-translate-y-4 trainsition-all duration-300`}>
                     <h1 className="text-[20px]  ml-[20px]">{topic.name}</h1>
                     <span className="absolute bottom-0 left-0 text-[13px] mb-[20px] ml-[20px]">Xem chủ đề ›</span>
@@ -416,7 +423,7 @@ const handlePrev = (rowIndex: number) => {
              {movieCountryList.map((movie,rowIndex) =>(  
               <div key={movie.id} className="relative mb-[20px]">
                 
-                <div  className="flex relative flex-wrap justify-between mb-5">
+                <div  className="flex relative flex-wrap justify-between mb-5" >
                   <h1 className="text-[20px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#fbca76] via-[#fef7ea] to-white">{movie.Country_name}</h1>
                   <a href="" className="relative text-[13px] p-[10px] inline-block group rounded-2xl">
                     Xem Toàn Bộ ›
@@ -427,7 +434,7 @@ const handlePrev = (rowIndex: number) => {
                     </a>
                 </div>
                 
-                <div className="flex items-center gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory" 
+                <div className="flex items-center gap-2 overflow-x-auto scroll-smooth snap-x snap-mandatory " 
                 ref={(el) => {viewportRef.current[rowIndex] = el}} 
                 onScroll={(e) => {
                   const target = e.target as HTMLDivElement;
@@ -437,10 +444,10 @@ const handlePrev = (rowIndex: number) => {
                 }} >
                   {movie.movies.map((mov)=>(
                   <div key={mov.id}  className="min-w-1/3 flex-shrink-0  ">
-                    <div className=" ">
-                      <Image src={mov.image_poster} alt="movie poster" width={400} height={100}  className="rounded-3xl"></Image>
-                      <h2 className="text-white mt-3 text-center">{mov.name_vn}</h2>
-                      <h3 className="text-[#aaaaaa] my-1 text-[13px] text-center">{mov.name_en}</h3>
+                    <div className="text-center hover:scale-105 trainsition-all duration-300 cursor-pointer p-4" onClick={()=>navigateDetail(mov.id)}>
+                      <Image src={mov.image_poster} alt="movie poster" width={400} height={100}  className="rounded-3xl mx-auto"></Image>
+                      <h2 className="text-white mt-3 ">{mov.name_vn}</h2>
+                      <h3 className="text-[#aaaaaa] my-1 text-[13px] ">{mov.name_en}</h3>
                     </div>
                   
                   </div>

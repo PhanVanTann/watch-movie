@@ -5,7 +5,7 @@ import { IoMdHeart } from "react-icons/io";
 import { BiSolidCommentDots } from "react-icons/bi";
 import { MdRateReview } from "react-icons/md";
 import { useState } from "react";
-import Comment from "../components/Comment";
+import Comment from "../../components/Comment";
 
 const tabs = [
   { key: "episodes", label: "Tập phim" },
